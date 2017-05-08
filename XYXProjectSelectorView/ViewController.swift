@@ -22,13 +22,14 @@ class ViewController: UIViewController {
 //        selectorView.frame = CGRect(x: 20, y: 100, width: 360, height: 30)
 
         //MARK: 初始化方法二
-        selectorView.add(titles:  ["第一个项目","测试项目B","第三个项目","4444444","第五个","测试6"], shouldChangeMaxCount: true)
+        selectorView.add(titles:  ["普通长度","短名字","有点长的命名","符号❤️","颜文字(o^∇^o)ﾉ ","Teresa🎒"], shouldChangeMaxCount: true)
         
         //可选方法
 //        selectorView.viewInsets.top = 10.0
 //        selectorView.viewInsets.bottom = 10.0
-        selectorView.defaultItem = "添加吧"
+        selectorView.defaultItem = "新增项目"
         selectorView.backgroundColor = UIColor.init(red: 241/255.0, green: 201/255.0, blue: 202/255.0, alpha: 1)
+        selectorView.maxSelectedItemCount = 12
         
         //代理
         selectorView.delegate = self
@@ -50,7 +51,7 @@ extension ViewController:XYXProjectSelectorViewDelegate{
     func didSelect(title: String, shouldRemove: Bool) {
         print("被点击的是\(title), shouldRemove = \(shouldRemove)")
         if shouldRemove == false {
-            selectorView.add(titles: ["新增一个"], shouldChangeMaxCount: false)
+            selectorView.add(titles: ["新增项目名称"], shouldChangeMaxCount: false)
         }
     }
 }
