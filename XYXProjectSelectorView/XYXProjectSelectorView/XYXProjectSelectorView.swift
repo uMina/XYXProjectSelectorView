@@ -154,7 +154,6 @@ class XYXProjectSelectorView: UIView {
     //MARK: - Configure UI
     
     fileprivate func configureUI() {
-        backgroundColor = UIColor.cyan
         for subView in self.subviews {
             subView.removeFromSuperview()
         }
@@ -191,7 +190,6 @@ class XYXProjectSelectorView: UIView {
         if let lastButton = self.viewWithTag(labelBaseTag+items.count-1){
             if frame.height != lastButton.frame.maxY + viewInsets.bottom {
                 self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: lastButton.frame.maxY + viewInsets.bottom)
-                
                 if delegate != nil {
                     delegate?.frameDidChanged(newFrame: frame)
                 }
@@ -207,12 +205,18 @@ class XYXProjectSelectorView: UIView {
         let labelWidth = getLabelWidth(labelStr: title, font: font, height: 20)
         let labelHeight:CGFloat = 30
         
+        let buttonColor = UIColor.init(red: 237/255.0, green: 112/255.0, blue: 45/255.0, alpha: 1)
+        
         let button = UIButton.init(type: UIButtonType.custom)
         button.frame = CGRect(x: 0, y: 0, width: labelWidth+imageWidth+xSpaceWidth, height: labelHeight)
         button.tag = tagIndex + labelBaseTag
-        button.backgroundColor = UIColor.brown
+        button.backgroundColor = UIColor.white
+        button.layer.cornerRadius = 5.0
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = buttonColor.cgColor
         button.titleLabel?.font = font
         button.setTitle(title, for: UIControlState.normal)
+        button.setTitleColor(buttonColor, for: UIControlState.normal)
         button.setImage(UIImage(named:imageName), for: UIControlState.normal)
         button.addTarget(self, action: #selector(clicked), for: UIControlEvents.touchUpInside)
         
@@ -223,10 +227,8 @@ class XYXProjectSelectorView: UIView {
     }
     
     @objc fileprivate func clicked(button:UIButton) {
-        print(button.tag)
         
         var shouldRemove = false
-        
         if button.title(for: UIControlState.normal) != defaultItem {
             shouldRemove = true
             let tag = button.tag - labelBaseTag
@@ -234,7 +236,6 @@ class XYXProjectSelectorView: UIView {
             if items.last != defaultItem {
                 items.append(defaultItem)
             }
-            
             configureUI()
         }
         

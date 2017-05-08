@@ -28,6 +28,7 @@ class ViewController: UIViewController {
 //        selectorView.viewInsets.top = 10.0
 //        selectorView.viewInsets.bottom = 10.0
         selectorView.defaultItem = "添加吧"
+        selectorView.backgroundColor = UIColor.init(red: 241/255.0, green: 201/255.0, blue: 202/255.0, alpha: 1)
         
         //代理
         selectorView.delegate = self
